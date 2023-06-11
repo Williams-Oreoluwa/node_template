@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/productModel')
+require('dotenv').config()
 
 
 
@@ -115,23 +116,21 @@ app.delete('/products/:id', async (req, res)=>{
         res.status(500).json({message:error.message})
         
     }
-  
  
 })
 
 
-
 mongoose.set('strictQuery', false)
-mongoose.connect('mongodb+srv://wilo_11:kingsman@cluster0.szpi4t7.mongodb.net/api?retryWrites=true&w=majority')
+
+mongoose.connect(process.env.MONGODB_URI)
 .then(()=>{
+    app.listen(8080)
 
     console.log('connected to mongodb')
 })
 .catch(()=>{
     console.log('error')
 })
-
-app.listen(8080)
 
 
 
