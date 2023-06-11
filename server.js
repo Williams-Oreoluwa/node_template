@@ -1,9 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/productModel')
-const cors = require('cors')
 
-app.use(cors())
 
 
 const app = express()
