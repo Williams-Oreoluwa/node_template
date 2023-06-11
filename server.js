@@ -1,6 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/productModel')
+const cors = require('cors')
+
+app.use(cors())
 
 
 const app = express()
@@ -119,17 +122,18 @@ app.delete('/products/:id', async (req, res)=>{
 })
 
 
-const port = 3000
-
 
 mongoose.set('strictQuery', false)
 mongoose.connect('mongodb+srv://wilo_11:kingsman@cluster0.szpi4t7.mongodb.net/api?retryWrites=true&w=majority')
 .then(()=>{
-    app.listen(port, ()=>{
-        console.log(`App running on port ${port}`)
-    })
+
     console.log('connected to mongodb')
 })
 .catch(()=>{
-    console.log(error)
+    console.log('error')
 })
+
+app.listen(8080)
+
+
+
